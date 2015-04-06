@@ -248,7 +248,7 @@ IntegerVec vectorAtoi(const StringVec& stringVector)
 {
 	IntegerVec returnVector;
 	for (const auto& string : stringVector) {
-		returnVector.push_back(std::stoi(string));
+		returnVector.push_back(std::atoi(string.c_str()));
 	}
 	return returnVector;
 }

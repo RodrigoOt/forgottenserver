@@ -34,6 +34,13 @@
 #include "wildcardtree.h"
 #include "quests.h"
 
+
+/* Cygwin Patch by Rodrigo */
+#include <boost/lexical_cast.hpp>
+namespace std {
+	string to_string(long long xx);
+}
+
 class ServiceManager;
 class Creature;
 class Monster;

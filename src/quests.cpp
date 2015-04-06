@@ -18,7 +18,7 @@
  */
 
 #include "otpch.h"
-
+#include "game.h"
 #include "quests.h"
 #include "tools.h"
 

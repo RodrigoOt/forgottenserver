@@ -166,46 +166,46 @@ bool ConfigManager::getBoolean(boolean_config_t _what) const
 	return boolean[_what];
 }
 
-std::string ConfigManager::getGlobalString(lua_State* L, const char* identifier, const char* _default)
+std::string ConfigManager::getGlobalString(lua_State* __L, const char* identifier, const char* _default)
 {
-	lua_getglobal(L, identifier);
-	if (!lua_isstring(L, -1)) {
+	lua_getglobal(__L, identifier);
+	if (!lua_isstring(__L, -1)) {
 		return _default;
 	}
 
-	size_t len = lua_strlen(L, -1);
-	std::string ret(lua_tostring(L, -1), len);
-	lua_pop(L, 1);
+	size_t len = lua_strlen(__L, -1);
+	std::string ret(lua_tostring(__L, -1), len);
+	lua_pop(__L, 1);
 	return ret;
 }
 
-int32_t ConfigManager::getGlobalNumber(lua_State* L, const char* identifier, const int32_t _default)
+int32_t ConfigManager::getGlobalNumber(lua_State* __L, const char* identifier, const int32_t _default)
 {
-	lua_getglobal(L, identifier);
-	if (!lua_isnumber(L, -1)) {
+	lua_getglobal(__L, identifier);
+	if (!lua_isnumber(__L, -1)) {
 		return _default;
 	}
 
-	int32_t val = lua_tonumber(L, -1);
-	lua_pop(L, 1);
+	int32_t val = lua_tonumber(__L, -1);
+	lua_pop(__L, 1);
 	return val;
 }
 
-bool ConfigManager::getGlobalBoolean(lua_State* L, const char* identifier, const bool _default)
+bool ConfigManager::getGlobalBoolean(lua_State* __L, const char* identifier, const bool _default)
 {
-	lua_getglobal(L, identifier);
-	if (!lua_isboolean(L, -1)) {
-		if (!lua_isstring(L, -1)) {
+	lua_getglobal(__L, identifier);
+	if (!lua_isboolean(__L, -1)) {
+		if (!lua_isstring(__L, -1)) {
 			return _default;
 		}
 
-		size_t len = lua_strlen(L, -1);
-		std::string ret(lua_tostring(L, -1), len);
-		lua_pop(L, 1);
+		size_t len = lua_strlen(__L, -1);
+		std::string ret(lua_tostring(__L, -1), len);
+		lua_pop(__L, 1);
 		return booleanString(ret);
 	}
 
-	int val = lua_toboolean(L, -1);
-	lua_pop(L, 1);
+	int val = lua_toboolean(__L, -1);
+	lua_pop(__L, 1);
 	return val != 0;
 }
